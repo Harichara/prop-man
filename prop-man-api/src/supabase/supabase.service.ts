@@ -1,4 +1,3 @@
-// supabase.service.ts
 import { Injectable } from '@nestjs/common';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { Database } from '../types/supabase.types';
@@ -10,7 +9,7 @@ export class SupabaseService {
   constructor() {
     this.client = createClient<Database>(
       process.env.SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_KEY!, // ⚠️ use service key on backend
+      process.env.SUPABASE_SERVICE_ROLE_KEY!, // ✅ service role key for backend
     );
   }
 

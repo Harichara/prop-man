@@ -12,10 +12,28 @@ import { TenantsModule } from './tenants/tenants.module';
 import { PropertiesController } from './properties/properties.controller';
 import { PropertiesService } from './properties/properties.service';
 import { PropertiesModule } from './properties/properties.module';
+import { UnitController } from './unit/unit.controller';
 
 @Module({
-  imports: [ConfigModule.forRoot(), LeasesModule, TenantsModule, PropertiesModule],
-  controllers: [AppController, LeasesController, TenantsController, PropertiesController],
-  providers: [AppService, SupabaseService, LeasesService, TenantsService, PropertiesService],
+  imports: [
+    ConfigModule.forRoot(),
+    LeasesModule,
+    TenantsModule,
+    PropertiesModule,
+  ],
+  controllers: [
+    AppController,
+    LeasesController,
+    TenantsController,
+    PropertiesController,
+    UnitController,
+  ],
+  providers: [
+    AppService,
+    SupabaseService,
+    LeasesService,
+    TenantsService,
+    PropertiesService,
+  ],
 })
 export class AppModule {}
