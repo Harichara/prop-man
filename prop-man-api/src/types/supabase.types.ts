@@ -16,37 +16,37 @@ export type Database = {
     Tables: {
       leases: {
         Row: {
-          created_at: string | null
+          created_at: string
           end_date: string | null
           id: string
-          is_active: boolean | null
+          is_active: boolean
           rent_amount: number
           security_deposit: number | null
           start_date: string
-          tenant_id: string | null
-          unit_id: string | null
+          tenant_id: string
+          unit_id: string
         }
         Insert: {
-          created_at?: string | null
+          created_at?: string
           end_date?: string | null
           id?: string
-          is_active?: boolean | null
+          is_active?: boolean
           rent_amount: number
           security_deposit?: number | null
           start_date: string
-          tenant_id?: string | null
-          unit_id?: string | null
+          tenant_id: string
+          unit_id: string
         }
         Update: {
-          created_at?: string | null
+          created_at?: string
           end_date?: string | null
           id?: string
-          is_active?: boolean | null
+          is_active?: boolean
           rent_amount?: number
           security_deposit?: number | null
           start_date?: string
-          tenant_id?: string | null
-          unit_id?: string | null
+          tenant_id?: string
+          unit_id?: string
         }
         Relationships: [
           {
