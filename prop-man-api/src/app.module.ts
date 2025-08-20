@@ -13,6 +13,8 @@ import { PropertiesController } from './properties/properties.controller';
 import { PropertiesService } from './properties/properties.service';
 import { PropertiesModule } from './properties/properties.module';
 import { UnitController } from './unit/unit.controller';
+import { UnitService } from './unit/unit.service';
+import { UnitModule } from './unit/unit.module';
 
 @Module({
   imports: [
@@ -20,6 +22,7 @@ import { UnitController } from './unit/unit.controller';
     LeasesModule,
     TenantsModule,
     PropertiesModule,
+    UnitModule,
   ],
   controllers: [
     AppController,
@@ -34,6 +37,7 @@ import { UnitController } from './unit/unit.controller';
     LeasesService,
     TenantsService,
     PropertiesService,
+    UnitService,
   ],
 })
 export class AppModule {}

@@ -1,29 +1,18 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { SupabaseService } from '../supabase/supabase.service';
-import { TenantDto, TenantRow } from './dto/tenant.dto';
+import { TenantsService } from './tenants.service';
+import { TenantDto } from './dto/tenant.dto';
 
 @Controller('tenants')
 export class TenantsController {
-  constructor(private readonly supabase: SupabaseService) {}
+  constructor(private readonly tenantsService: TenantsService) {}
 
   @Get()
   async findAll(): Promise<TenantDto[]> {
-    const result = await this.supabase.getClient().from('tenants').select('*');
-
-    if (result.error) throw result.error;
-    return (result.data ?? []).map((row: TenantRow) => new TenantDto(row));
+    return this.tenantsService.findAll();
   }
 
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<TenantDto | null> {
-    const result = await this.supabase
-      .getClient()
-      .from('tenants')
-      .select('*')
-      .eq('id', id)
-      .maybeSingle();
-
-    if (result.error) throw result.error;
-    return result.data ? new TenantDto(result.data as TenantRow) : null;
+    return this.tenantsService.findOne(id);
   }
 }
