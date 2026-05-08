@@ -385,6 +385,12 @@ model BankAccount {
 
 ## 🎨 UI/UX Design
 
+### Screenshots
+
+Refer to the screenshots below as a base for the dashboard UI. It does not have to be exact. Use it as a reference:
+
+- @context/screenshots/dashboard-ui-main.png
+
 ### Design Principles
 
 1. **🎯 Clarity Over Cleverness** - Financial data should be immediately comprehensible
