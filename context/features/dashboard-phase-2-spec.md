@@ -7,9 +7,9 @@ This is phase 2 of 3 for the dashboard UI layout. Use the screenshot referenced 
 ## Requirements for phase 2
 
 - Collapsible sidebar
-- Items/types with links to /items/TYPE (eg.items/snippets)
-- Favorite collections
-- Most recent collections
+- transactions/types with links to /transactions/TYPE (eg.transactions/payment)
+- Favorite properties
+- Most recent properties
 - User avatar area at the bottom
 - Drawer icon to open/close sidebar
 - Always a drawer on mobile view

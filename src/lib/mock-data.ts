@@ -10,6 +10,39 @@ export interface Property {
   unitNumber?: string
 }
 
+export interface ItemType {
+  id: string
+  name: string
+  icon: string
+  href: string
+}
+
+export interface Collection {
+  id: string
+  name: string
+  icon: string
+  href: string
+  isFavorite: boolean
+  lastAccessed: string | null
+}
+
+export const itemTypes: ItemType[] = [
+  { id: "type-transactions", name: "Transactions", icon: "Receipt", href: "/items/transactions" },
+  { id: "type-properties", name: "Properties", icon: "Building2", href: "/items/properties" },
+  { id: "type-tenants", name: "Tenants", icon: "Users", href: "/items/tenants" },
+  { id: "type-categories", name: "Categories", icon: "Tags", href: "/items/categories" },
+  { id: "type-reports", name: "Reports", icon: "BarChart3", href: "/items/reports" },
+]
+
+export const collections: Collection[] = [
+  { id: "col-1", name: "Properties", icon: "Building2", href: "/collections/properties", isFavorite: true, lastAccessed: "2026-03-22" },
+  { id: "col-2", name: "Tenant Records", icon: "Folder", href: "/collections/tenants", isFavorite: false, lastAccessed: "2026-03-18" },
+  { id: "col-3", name: "Tax Documents", icon: "FileText", href: "/collections/tax", isFavorite: true, lastAccessed: "2026-03-15" },
+  { id: "col-4", name: "Receipts", icon: "Image", href: "/collections/receipts", isFavorite: false, lastAccessed: "2026-03-10" },
+  { id: "col-5", name: "Maintenance Logs", icon: "Wrench", href: "/collections/maintenance", isFavorite: true, lastAccessed: "2026-03-20" },
+  { id: "col-6", name: "Lease Agreements", icon: "FileSignature", href: "/collections/leases", isFavorite: false, lastAccessed: "2026-03-05" },
+]
+
 export interface Category {
   id: string
   name: string
