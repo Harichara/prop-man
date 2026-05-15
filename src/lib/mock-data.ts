@@ -27,11 +27,11 @@ export interface Collection {
 }
 
 export const itemTypes: ItemType[] = [
-  { id: "type-transactions", name: "Transactions", icon: "Receipt", href: "/items/transactions" },
-  { id: "type-properties", name: "Properties", icon: "Building2", href: "/items/properties" },
-  { id: "type-tenants", name: "Tenants", icon: "Users", href: "/items/tenants" },
-  { id: "type-categories", name: "Categories", icon: "Tags", href: "/items/categories" },
-  { id: "type-reports", name: "Reports", icon: "BarChart3", href: "/items/reports" },
+  { id: "type-transactions", name: "Transactions", icon: "Receipt", href: "/transactions/transactions" },
+  { id: "type-properties", name: "Properties", icon: "Building2", href: "/transactions/properties" },
+  { id: "type-tenants", name: "Tenants", icon: "Users", href: "/transactions/tenants" },
+  { id: "type-categories", name: "Categories", icon: "Tags", href: "/transactions/categories" },
+  { id: "type-reports", name: "Reports", icon: "BarChart3", href: "/transactions/reports" },
 ]
 
 export const collections: Collection[] = [
