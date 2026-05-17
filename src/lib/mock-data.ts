@@ -1,119 +1,390 @@
-export interface User {
-  id: string
-  name: string
-  email: string
-}
+import { Home, Wrench, Zap, Droplets, Shield, FileText, Building2 } from "lucide-react"
 
 export interface Property {
   id: string
+  name: string
   address: string
-  unitNumber?: string
-}
-
-export interface ItemType {
-  id: string
-  name: string
-  icon: string
-  href: string
-}
-
-export interface Collection {
-  id: string
-  name: string
-  icon: string
-  href: string
-  isFavorite: boolean
-  lastAccessed: string | null
-}
-
-export const itemTypes: ItemType[] = [
-  { id: "type-transactions", name: "Transactions", icon: "Receipt", href: "/transactions/transactions" },
-  { id: "type-properties", name: "Properties", icon: "Building2", href: "/transactions/properties" },
-  { id: "type-tenants", name: "Tenants", icon: "Users", href: "/transactions/tenants" },
-  { id: "type-categories", name: "Categories", icon: "Tags", href: "/transactions/categories" },
-  { id: "type-reports", name: "Reports", icon: "BarChart3", href: "/transactions/reports" },
-]
-
-export const collections: Collection[] = [
-  { id: "col-1", name: "Properties", icon: "Building2", href: "/collections/properties", isFavorite: true, lastAccessed: "2026-03-22" },
-  { id: "col-2", name: "Tenant Records", icon: "Folder", href: "/collections/tenants", isFavorite: false, lastAccessed: "2026-03-18" },
-  { id: "col-3", name: "Tax Documents", icon: "FileText", href: "/collections/tax", isFavorite: true, lastAccessed: "2026-03-15" },
-  { id: "col-4", name: "Receipts", icon: "Image", href: "/collections/receipts", isFavorite: false, lastAccessed: "2026-03-10" },
-  { id: "col-5", name: "Maintenance Logs", icon: "Wrench", href: "/collections/maintenance", isFavorite: true, lastAccessed: "2026-03-20" },
-  { id: "col-6", name: "Lease Agreements", icon: "FileSignature", href: "/collections/leases", isFavorite: false, lastAccessed: "2026-03-05" },
-]
-
-export interface Category {
-  id: string
-  name: string
-  type: "INCOME" | "EXPENSE"
-  taxDeductible: boolean
-  icon?: string
-  color?: string
+  units: number
+  occupancy: number
 }
 
 export interface Transaction {
   id: string
   date: string
-  amount: number
   description: string
-  type: "INCOME" | "EXPENSE"
-  categoryId: string
-  propertyId?: string
+  category: string
+  categoryIcon: React.ElementType
+  amount: number
+  type: "income" | "expense"
+  propertyId: string
+  propertyName: string
 }
 
-export const currentUser: User = {
-  id: "user-1",
-  name: "Bryan",
-  email: "bryan@example.com",
+export interface MonthlyData {
+  month: string
+  income: number
+  expense: number
+}
+
+export interface CategoryData {
+  name: string
+  value: number
+  color: string
 }
 
 export const properties: Property[] = [
-  { id: "prop-1", address: "123 Main St", unitNumber: "Unit 1" },
-  { id: "prop-2", address: "123 Main St", unitNumber: "Unit 2" },
-]
-
-export const categories: Category[] = [
-  { id: "cat-rent-1", name: "Rent - Unit 1", type: "INCOME", taxDeductible: false, icon: "home", color: "#10b981" },
-  { id: "cat-rent-2", name: "Rent - Unit 2", type: "INCOME", taxDeductible: false, icon: "home", color: "#10b981" },
-  { id: "cat-other-income", name: "Other Income", type: "INCOME", taxDeductible: false, icon: "plus-circle", color: "#10b981" },
-  { id: "cat-repairs", name: "Repairs & Maintenance", type: "EXPENSE", taxDeductible: true, icon: "wrench", color: "#f59e0b" },
-  { id: "cat-electric", name: "Electricity", type: "EXPENSE", taxDeductible: true, icon: "zap", color: "#3b82f6" },
-  { id: "cat-gas", name: "Gas", type: "EXPENSE", taxDeductible: true, icon: "flame", color: "#3b82f6" },
-  { id: "cat-water", name: "Water", type: "EXPENSE", taxDeductible: true, icon: "droplet", color: "#3b82f6" },
-  { id: "cat-trash", name: "Trash", type: "EXPENSE", taxDeductible: true, icon: "trash-2", color: "#3b82f6" },
-  { id: "cat-insurance", name: "Insurance", type: "EXPENSE", taxDeductible: true, icon: "shield", color: "#8b5cf6" },
-  { id: "cat-tax", name: "Property Tax", type: "EXPENSE", taxDeductible: true, icon: "landmark", color: "#ef4444" },
-  { id: "cat-hoa", name: "HOA/Condo Fees", type: "EXPENSE", taxDeductible: true, icon: "building", color: "#64748b" },
-  { id: "cat-supplies", name: "Supplies", type: "EXPENSE", taxDeductible: true, icon: "package", color: "#64748b" },
-  { id: "cat-mortgage", name: "Mortgage Interest", type: "EXPENSE", taxDeductible: true, icon: "credit-card", color: "#64748b" },
+  {
+    id: "oak-street",
+    name: "Oak Street Duplex",
+    address: "123 Oak Street",
+    units: 2,
+    occupancy: 100,
+  },
+  {
+    id: "maple-avenue",
+    name: "Maple Avenue Home",
+    address: "456 Maple Avenue",
+    units: 1,
+    occupancy: 100,
+  },
+  {
+    id: "pine-street",
+    name: "Pine Street Triplex",
+    address: "789 Pine Street",
+    units: 3,
+    occupancy: 67,
+  },
 ]
 
 export const transactions: Transaction[] = [
-  // January 2026
-  { id: "txn-01", date: "2026-01-01", amount: 1700, description: "Rent - Unit 1", type: "INCOME", categoryId: "cat-rent-1", propertyId: "prop-1" },
-  { id: "txn-02", date: "2026-01-01", amount: 1500, description: "Rent - Unit 2", type: "INCOME", categoryId: "cat-rent-2", propertyId: "prop-2" },
-  { id: "txn-03", date: "2026-01-05", amount: -65, description: "Water Bill", type: "EXPENSE", categoryId: "cat-water" },
-  { id: "txn-04", date: "2026-01-08", amount: -95, description: "Electric Bill", type: "EXPENSE", categoryId: "cat-electric" },
-  { id: "txn-05", date: "2026-01-15", amount: -450, description: "HVAC Repair", type: "EXPENSE", categoryId: "cat-repairs", propertyId: "prop-1" },
-  { id: "txn-06", date: "2026-01-20", amount: -180, description: "Insurance Premium", type: "EXPENSE", categoryId: "cat-insurance" },
-  { id: "txn-07", date: "2026-01-25", amount: -35, description: "Trash Service", type: "EXPENSE", categoryId: "cat-trash" },
-  // February 2026
-  { id: "txn-08", date: "2026-02-01", amount: 1700, description: "Rent - Unit 1", type: "INCOME", categoryId: "cat-rent-1", propertyId: "prop-1" },
-  { id: "txn-09", date: "2026-02-01", amount: 1500, description: "Rent - Unit 2", type: "INCOME", categoryId: "cat-rent-2", propertyId: "prop-2" },
-  { id: "txn-10", date: "2026-02-05", amount: -62, description: "Water Bill", type: "EXPENSE", categoryId: "cat-water" },
-  { id: "txn-11", date: "2026-02-08", amount: -88, description: "Electric Bill", type: "EXPENSE", categoryId: "cat-electric" },
-  { id: "txn-12", date: "2026-02-12", amount: -45, description: "Gas Bill", type: "EXPENSE", categoryId: "cat-gas" },
-  { id: "txn-13", date: "2026-02-18", amount: -220, description: "Plumber - Unit 2", type: "EXPENSE", categoryId: "cat-repairs", propertyId: "prop-2" },
-  { id: "txn-14", date: "2026-02-22", amount: -340, description: "Property Tax Payment", type: "EXPENSE", categoryId: "cat-tax" },
-  // March 2026
-  { id: "txn-15", date: "2026-03-01", amount: 1700, description: "Rent - Unit 1", type: "INCOME", categoryId: "cat-rent-1", propertyId: "prop-1" },
-  { id: "txn-16", date: "2026-03-01", amount: 1500, description: "Rent - Unit 2", type: "INCOME", categoryId: "cat-rent-2", propertyId: "prop-2" },
-  { id: "txn-17", date: "2026-03-03", amount: -450, description: "HVAC Repair", type: "EXPENSE", categoryId: "cat-repairs", propertyId: "prop-1" },
-  { id: "txn-18", date: "2026-03-05", amount: -120, description: "Electric Bill", type: "EXPENSE", categoryId: "cat-electric" },
-  { id: "txn-19", date: "2026-03-08", amount: -58, description: "Water Bill", type: "EXPENSE", categoryId: "cat-water" },
-  { id: "txn-20", date: "2026-03-12", amount: -87, description: "Home Depot Supplies", type: "EXPENSE", categoryId: "cat-supplies" },
-  { id: "txn-21", date: "2026-03-15", amount: -75, description: "Lawn Care", type: "EXPENSE", categoryId: "cat-repairs" },
-  { id: "txn-22", date: "2026-03-20", amount: -100, description: "HOA Fees", type: "EXPENSE", categoryId: "cat-hoa" },
-  { id: "txn-23", date: "2026-03-22", amount: -950, description: "Mortgage Interest", type: "EXPENSE", categoryId: "cat-mortgage" },
+  {
+    id: "1",
+    date: "May 1",
+    description: "Rent Payment - Unit 1",
+    category: "Rent",
+    categoryIcon: Home,
+    amount: 1600,
+    type: "income",
+    propertyId: "oak-street",
+    propertyName: "Oak Street Duplex",
+  },
+  {
+    id: "2",
+    date: "May 1",
+    description: "Rent Payment - Unit 2",
+    category: "Rent",
+    categoryIcon: Home,
+    amount: 1600,
+    type: "income",
+    propertyId: "oak-street",
+    propertyName: "Oak Street Duplex",
+  },
+  {
+    id: "3",
+    date: "May 1",
+    description: "Rent Payment",
+    category: "Rent",
+    categoryIcon: Home,
+    amount: 1800,
+    type: "income",
+    propertyId: "maple-avenue",
+    propertyName: "Maple Avenue Home",
+  },
+  {
+    id: "4",
+    date: "May 1",
+    description: "Rent Payment - Unit 1",
+    category: "Rent",
+    categoryIcon: Home,
+    amount: 1200,
+    type: "income",
+    propertyId: "pine-street",
+    propertyName: "Pine Street Triplex",
+  },
+  {
+    id: "5",
+    date: "May 1",
+    description: "Rent Payment - Unit 2",
+    category: "Rent",
+    categoryIcon: Home,
+    amount: 1200,
+    type: "income",
+    propertyId: "pine-street",
+    propertyName: "Pine Street Triplex",
+  },
+  {
+    id: "6",
+    date: "May 3",
+    description: "HVAC Repair - Compressor",
+    category: "Repairs",
+    categoryIcon: Wrench,
+    amount: 850,
+    type: "expense",
+    propertyId: "oak-street",
+    propertyName: "Oak Street Duplex",
+  },
+  {
+    id: "7",
+    date: "May 5",
+    description: "Electric Bill - Common Areas",
+    category: "Utilities",
+    categoryIcon: Zap,
+    amount: 145,
+    type: "expense",
+    propertyId: "oak-street",
+    propertyName: "Oak Street Duplex",
+  },
+  {
+    id: "8",
+    date: "May 5",
+    description: "Electric Bill",
+    category: "Utilities",
+    categoryIcon: Zap,
+    amount: 95,
+    type: "expense",
+    propertyId: "maple-avenue",
+    propertyName: "Maple Avenue Home",
+  },
+  {
+    id: "9",
+    date: "May 5",
+    description: "Electric Bill - Common Areas",
+    category: "Utilities",
+    categoryIcon: Zap,
+    amount: 180,
+    type: "expense",
+    propertyId: "pine-street",
+    propertyName: "Pine Street Triplex",
+  },
+  {
+    id: "10",
+    date: "May 8",
+    description: "Water & Sewer Bill",
+    category: "Utilities",
+    categoryIcon: Droplets,
+    amount: 87,
+    type: "expense",
+    propertyId: "oak-street",
+    propertyName: "Oak Street Duplex",
+  },
+  {
+    id: "11",
+    date: "May 8",
+    description: "Water & Sewer Bill",
+    category: "Utilities",
+    categoryIcon: Droplets,
+    amount: 65,
+    type: "expense",
+    propertyId: "maple-avenue",
+    propertyName: "Maple Avenue Home",
+  },
+  {
+    id: "12",
+    date: "May 8",
+    description: "Water & Sewer Bill",
+    category: "Utilities",
+    categoryIcon: Droplets,
+    amount: 120,
+    type: "expense",
+    propertyId: "pine-street",
+    propertyName: "Pine Street Triplex",
+  },
+  {
+    id: "13",
+    date: "May 10",
+    description: "Property Insurance Premium",
+    category: "Insurance",
+    categoryIcon: Shield,
+    amount: 225,
+    type: "expense",
+    propertyId: "oak-street",
+    propertyName: "Oak Street Duplex",
+  },
+  {
+    id: "14",
+    date: "May 10",
+    description: "Property Insurance Premium",
+    category: "Insurance",
+    categoryIcon: Shield,
+    amount: 175,
+    type: "expense",
+    propertyId: "maple-avenue",
+    propertyName: "Maple Avenue Home",
+  },
+  {
+    id: "15",
+    date: "May 10",
+    description: "Property Insurance Premium",
+    category: "Insurance",
+    categoryIcon: Shield,
+    amount: 280,
+    type: "expense",
+    propertyId: "pine-street",
+    propertyName: "Pine Street Triplex",
+  },
+  {
+    id: "16",
+    date: "May 12",
+    description: "Lawn Maintenance Service",
+    category: "Repairs",
+    categoryIcon: Wrench,
+    amount: 75,
+    type: "expense",
+    propertyId: "oak-street",
+    propertyName: "Oak Street Duplex",
+  },
+  {
+    id: "17",
+    date: "May 12",
+    description: "Lawn Maintenance Service",
+    category: "Repairs",
+    categoryIcon: Wrench,
+    amount: 60,
+    type: "expense",
+    propertyId: "maple-avenue",
+    propertyName: "Maple Avenue Home",
+  },
+  {
+    id: "18",
+    date: "May 15",
+    description: "Property Tax Q2",
+    category: "Tax",
+    categoryIcon: FileText,
+    amount: 490,
+    type: "expense",
+    propertyId: "oak-street",
+    propertyName: "Oak Street Duplex",
+  },
+  {
+    id: "19",
+    date: "May 15",
+    description: "Property Tax Q2",
+    category: "Tax",
+    categoryIcon: FileText,
+    amount: 380,
+    type: "expense",
+    propertyId: "maple-avenue",
+    propertyName: "Maple Avenue Home",
+  },
+  {
+    id: "20",
+    date: "May 15",
+    description: "Property Tax Q2",
+    category: "Tax",
+    categoryIcon: FileText,
+    amount: 520,
+    type: "expense",
+    propertyId: "pine-street",
+    propertyName: "Pine Street Triplex",
+  },
+  {
+    id: "21",
+    date: "May 18",
+    description: "Plumbing Repair - Unit 3",
+    category: "Repairs",
+    categoryIcon: Wrench,
+    amount: 320,
+    type: "expense",
+    propertyId: "pine-street",
+    propertyName: "Pine Street Triplex",
+  },
 ]
+
+export const monthlyDataByProperty: Record<string, MonthlyData[]> = {
+  all: [
+    { month: "Jan", income: 7400, expense: 3200 },
+    { month: "Feb", income: 7400, expense: 2800 },
+    { month: "Mar", income: 7400, expense: 3100 },
+    { month: "Apr", income: 7400, expense: 2500 },
+    { month: "May", income: 7400, expense: 3747 },
+    { month: "Jun", income: 7400, expense: 2100 },
+  ],
+  "oak-street": [
+    { month: "Jan", income: 3200, expense: 1400 },
+    { month: "Feb", income: 3200, expense: 1200 },
+    { month: "Mar", income: 3200, expense: 1350 },
+    { month: "Apr", income: 3200, expense: 1100 },
+    { month: "May", income: 3200, expense: 1872 },
+    { month: "Jun", income: 3200, expense: 900 },
+  ],
+  "maple-avenue": [
+    { month: "Jan", income: 1800, expense: 800 },
+    { month: "Feb", income: 1800, expense: 700 },
+    { month: "Mar", income: 1800, expense: 750 },
+    { month: "Apr", income: 1800, expense: 650 },
+    { month: "May", income: 1800, expense: 775 },
+    { month: "Jun", income: 1800, expense: 550 },
+  ],
+  "pine-street": [
+    { month: "Jan", income: 2400, expense: 1000 },
+    { month: "Feb", income: 2400, expense: 900 },
+    { month: "Mar", income: 2400, expense: 1000 },
+    { month: "Apr", income: 2400, expense: 750 },
+    { month: "May", income: 2400, expense: 1100 },
+    { month: "Jun", income: 2400, expense: 650 },
+  ],
+}
+
+export function calculateMetrics(propertyId: string | null, transactionsList: Transaction[]) {
+  const filtered = propertyId
+    ? transactionsList.filter((t) => t.propertyId === propertyId)
+    : transactionsList
+
+  const totalIncome = filtered
+    .filter((t) => t.type === "income")
+    .reduce((sum, t) => sum + t.amount, 0)
+
+  const totalExpenses = filtered
+    .filter((t) => t.type === "expense")
+    .reduce((sum, t) => sum + t.amount, 0)
+
+  const netIncome = totalIncome - totalExpenses
+
+  return { totalIncome, totalExpenses, netIncome }
+}
+
+export function getCategoryBreakdown(propertyId: string | null, transactionsList: Transaction[]) {
+  const filtered = propertyId
+    ? transactionsList.filter((t) => t.propertyId === propertyId)
+    : transactionsList
+
+  const incomeBySource: Record<string, number> = {}
+  const expenseByCategory: Record<string, number> = {}
+
+  filtered.forEach((t) => {
+    if (t.type === "income") {
+      const key = propertyId ? t.description : t.propertyName
+      incomeBySource[key] = (incomeBySource[key] || 0) + t.amount
+    } else {
+      expenseByCategory[t.category] = (expenseByCategory[t.category] || 0) + t.amount
+    }
+  })
+
+  const incomeColors = [
+    "oklch(0.72 0.19 160)",
+    "oklch(0.6 0.15 160)",
+    "oklch(0.55 0.12 160)",
+    "oklch(0.7 0.17 140)",
+  ]
+
+  const expenseColors: Record<string, string> = {
+    Repairs: "oklch(0.75 0.18 75)",
+    Utilities: "oklch(0.65 0.2 260)",
+    Insurance: "oklch(0.7 0.15 300)",
+    Tax: "oklch(0.65 0.2 25)",
+  }
+
+  const incomeData: CategoryData[] = Object.entries(incomeBySource).map(([name, value], i) => ({
+    name,
+    value,
+    color: incomeColors[i % incomeColors.length],
+  }))
+
+  const expenseData: CategoryData[] = Object.entries(expenseByCategory).map(([name, value]) => ({
+    name,
+    value,
+    color: expenseColors[name] || "oklch(0.6 0.1 260)",
+  }))
+
+  return { incomeData, expenseData }
+}

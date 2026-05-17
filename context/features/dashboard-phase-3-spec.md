@@ -7,10 +7,15 @@ This is phase 3 of 3 for the dashboard UI layout. Use the screenshot referenced 
 ## Requirements for phase 3
 
 - The main area to the right
-- Recent collections
-- Pinned Items
-- 10 Recent items
-- 4 stats cards at the top for number of items, collections, favorite items and favorite collections (Not in screenshot)
+- Top NavBar area should include information about Dashboard overview (Shown in screenshot)
+- Top Nav should have a dropdown to select which property to display data information based on property selected
+- Your Properties
+- Recent Transactions
+- Monthly Trends
+- Income by Source
+- Expenses By Category
+- 3 stats cards at the top for Total Income, Total Expenses, Net Income
+- Clicking on a Transaction opens a drawer for Transaction Details (Shown in screenshot as dashboard-ui-drawer.png)
 
 ## References
 

@@ -1,5 +1,13 @@
 # Current Feature
 
+## Status
+
+**In Progress**
+
+## Spec
+
+@context/features/dashboard-phase-3-spec.md
+
 ## History
 
 <!-- Keep this updated. Earliest to latest -->
